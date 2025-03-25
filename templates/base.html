@@ -1,11 +1,24 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bergen Tech Clubs</title>
+    <title>BT REAL ESTATE</title>
+<!-- Font Awesome -->
+  <link rel="stylesheet" href="{% static 'css/all.css' %}">
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+  <!-- Custom -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+   <!-- Lightbox -->
+<link rel="stylesheet" href="{% static 'css/lightbox.min.css' %}">
+
 </head>
 <body>
-    <h1>Welcome to The Bergen Tech Clubhouse!</h1>
+    {% include "partials/_navbar.html" %}
+    {%block content%}{%endblock content%}
+    {% include "partials/_footer.html" %}
+
 </body>
 </html>
