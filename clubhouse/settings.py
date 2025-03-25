@@ -51,21 +51,10 @@ SECRET_KEY = 'django-insecure-hrznqtdze+_fh-12)fbcane2a52kjmxsp5xu6hrgk0(0yx4v35
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-<<<<<<< HEAD
 ALLOWED_HOSTS = ['bt-production-bacf.up.railway.app', '127.0.0.1']
 # CSRF_TRUSTED_ORIGINS = ['https://bt-production-bacf.up.railway.app']
 # CSRF_COOKIE_SECURE = True
 # SESSION_COOKIE_SECURE = True
-=======
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'bt-production-bacf.up.railway.app']
-
-CSRF_TRUSTED_ORIGINS = [
-    'https://bt-production-bacf.up.railway.app'
-]
-
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
->>>>>>> cf12130584c90890aee9b69a98d53cb1d5ac29f0
 
 
 # Application definition
