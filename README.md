@@ -1,4 +1,6 @@
-https://prod.liveshare.vsengsaas.visualstudio.com/join?923F7F27FAE44FDBF53BE09ABFCA7CD8B16B
+https://prod.liveshare.vsengsaas.visualstudio.com/join?A64257FCCB1DC32CCDF1B37D76F5B7E110E0
+
+
 bt-production-bacf.up.railway.app
 
 https://supabase.com/dashboard/org/taorclpsskrdtikvzgap/general
