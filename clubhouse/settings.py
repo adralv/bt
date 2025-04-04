@@ -18,25 +18,24 @@ from pathlib import Path
 # from supabase import create_client
 import os
 
-from supabase import create_client
-SUPABASE_URL = os.getenv("SUPABASE_URL")
-SUPABASE_KEY = os.getenv("SUPABASE_KEY")
-# Ensure SUPABASE_URL is not None
-if not SUPABASE_URL:
-    raise ValueError("SUPABASE_URL is not set in environment variables")
-# Create Supabase Client
-supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
-# Correct MEDIA_URL format
-MEDIA_URL = f"{SUPABASE_URL}/storage/v1/object/public/media/"
+# from supabase import create_client
+# SUPABASE_URL = os.getenv("SUPABASE_URL")
+# SUPABASE_KEY = os.getenv("SUPABASE_KEY")
+# # Ensure SUPABASE_URL is not None
+# if not SUPABASE_URL:
+#     raise ValueError("SUPABASE_URL is not set in environment variables")
+# # Create Supabase Client
+# supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
+# # Correct MEDIA_URL format
+# MEDIA_URL = f"{SUPABASE_URL}/storage/v1/object/public/media/"
 
 
 
 
-DB_PASSWORD = os.getenv('DB_PASSWORD')
-DB_HOST = os.getenv('DB_HOST')
-SECRET_KEY = os.getenv('SECRET_KEY')
+# DB_PASSWORD = os.getenv('DB_PASSWORD')
+# DB_HOST = os.getenv('DB_HOST')
+# SECRET_KEY = os.getenv('SECRET_KEY')
 
->>>>>>> cf12130584c90890aee9b69a98d53cb1d5ac29f0
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -67,6 +66,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pages',
+    'clubs',
+    'users'
     
 ]
 
@@ -111,16 +112,16 @@ WSGI_APPLICATION = 'clubhouse.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'defaultdb',
-        'USER': 'avnadmin',
-        'PASSWORD': DB_PASSWORD,
-        'HOST': DB_HOST,
-        'PORT': '26723',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'defaultdb',
+#         'USER': 'avnadmin',
+#         'PASSWORD': DB_PASSWORD,
+#         'HOST': DB_HOST,
+#         'PORT': '26723',
+#     }
+# }
 
 
 # Password validation
@@ -160,23 +161,8 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
-<<<<<<< HEAD
     os.path.join(BASE_DIR, 'clubhouse/static')
 ]
-=======
-    os.path.join(BASE_DIR, 'btre/static')
-]
-
-# Media Folder Settings
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = 'media/'
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
-
-STATIC_URL = 'static/'
->>>>>>> cf12130584c90890aee9b69a98d53cb1d5ac29f0
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
