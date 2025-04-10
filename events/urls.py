@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import calendar_view
+from .views import contact_view
 
 urlpatterns = [
-    path('calendar/', calendar_view, name='calendar'),
+    path('contact/', contact_view, name='contact'),
 ]
