@@ -12,7 +12,7 @@ def login(request):
         if user is not None:
             auth.login(request, user)
             messages.success(request, "Successful login!")
-            return redirect('dashboard')
+            return redirect('index')
         else:
             messages.error(request, 'Invalid login! Try agian.')
             return redirect('login')
@@ -23,7 +23,7 @@ def logout(request):
     if request.method == "POST":
         auth.logout(request)
         messages.success(request, "You have been logged out.")
-        return redirect('index')
+    return redirect('login')
     # else:
     #     messages.error(request, "You must login first.")
     #     return redirect('login')

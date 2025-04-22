@@ -50,12 +50,12 @@ SECRET_KEY = 'django-insecure-hrznqtdze+_fh-12)fbcane2a52kjmxsp5xu6hrgk0(0yx4v35
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['bt-production-bacf.up.railway.app', '127.0.0.1']
+ALLOWED_HOSTS = ['bt-production-bacf.up.railway.app', '127.0.0.1','localhost']
 # CSRF_TRUSTED_ORIGINS = ['https://bt-production-bacf.up.railway.app']
 # CSRF_COOKIE_SECURE = True
 # SESSION_COOKIE_SECURE = True
-
-
+LOGIN_URL = '/users/login'      
+LOGIN_REDIRECT_URL = '/'     
 # Application definition
 
 INSTALLED_APPS = [
@@ -106,22 +106,22 @@ WSGI_APPLICATION = 'clubhouse.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'defaultdb',
-#         'USER': 'avnadmin',
-#         'PASSWORD': DB_PASSWORD,
-#         'HOST': DB_HOST,
-#         'PORT': '26723',
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'defaultdb',
+        'USER': 'avnadmin',
+        'PASSWORD': 'AVNS_p2gWvED5SPNxR8o7JZM',
+        'HOST': 'pg-5cfe4b8-classicalalter-74dc.b.aivencloud.com',
+        'PORT': '10161',
+    }
+}
 
 
 # Password validation
