@@ -23,7 +23,7 @@ def logout(request):
     if request.method == "POST":
         auth.logout(request)
         messages.success(request, "You have been logged out.")
-    return redirect('login')
+        return redirect('login')
     # else:
     #     messages.error(request, "You must login first.")
     #     return redirect('login')
