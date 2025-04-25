@@ -4,3 +4,6 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def club_list(request):
     return render(request, 'club_list.html')
+@login_required
+def club_details(request):
+    return render(request, 'club_detail.html')

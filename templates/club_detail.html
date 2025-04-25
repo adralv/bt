@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<!-- Main Content -->
+<div class="container my-4">
+  <div class="row">
+    <!-- Left Sidebar -->
+    <div class="col-md-3 text-center">
+      <img class="img-fluid rounded-circle mb-3" alt="Club Logo" style="width: 150px; height: 150px;">
+      <hr>
+      <div class="text-start">
+        <p><strong>Room:</strong> 126</p>
+        <p><strong>Club Name:</strong> Physics Club</p>
+        <p><strong>Created By:</strong> Mr. Zav</p>
+      </div>
+    </div>
+
+    <!-- Right Content -->
+    <div class="col-md-9">
+      <!-- Description -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <h4 class="card-title">Description</h4>
+          <p class="card-text">
+            Welcome to the Physics Club! We break people down to build them back up stronger!
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <!-- Announcements -->
+        <div class="col-md-8">
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="card-title">Announcements</h5>
+              <ul class="list-unstyled">
+                <li class="mb-2">
+                  <strong>First Meeting!</strong><br>
+                  <small>October 10, 2024</small><br>
+                  Our first meeting will be in Room 126 after school. You have 6 FRQs to complete!
+                </li>
+                <li class="mb-2">
+                  <strong>Lab Ideas</strong><br>
+                  <small>October 32, 2024</small><br>
+                  Submit your lab ideas by the end of the week!
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Meeting Schedule & Upcoming Events -->
+        <div class="col-md-4">
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="card-title">Meeting Schedule</h5>
+              <p>Every Thursday after school</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Upcoming Events</h5>
+              <ul class="list-unstyled">
+                <li class="mb-2">
+                  <strong>Hackathon Kickoff</strong><br>
+                  <small>April 5, 2025</small>
+                </li>
+                <li class="mb-2">
+                  <strong>Guest Speaker</strong><br>
+                  <small>March 16, 2020</small>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

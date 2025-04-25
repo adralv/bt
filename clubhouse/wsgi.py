@@ -1,16 +1,22 @@
-"""
-WSGI config for clubhouse project.
-
-It exposes the WSGI callable as a module-level variable named ``application``.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/5.1/howto/deployment/wsgi/
-"""
-
 import os
-
+import sys
+import logging
+import traceback
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'clubhouse.settings')
+# Add your project directory to the sys.path
+sys.path.append('C:/vault90')
 
-application = get_wsgi_application()
+# Set the settings module for the project
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'vault90.settings')
+
+# Setup logging for WSGI errors
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+
+try:
+	# Get the WSGI application
+	application = get_wsgi_application()
+except Exception:
+    logger.error('WSGI failed to start', exc_info=True)
+    traceback.print_exc()
