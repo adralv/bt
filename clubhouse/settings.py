@@ -51,7 +51,7 @@ SECRET_KEY = 'django-insecure-hrznqtdze+_fh-12)fbcane2a52kjmxsp5xu6hrgk0(0yx4v35
 DEBUG = True
 
 ALLOWED_HOSTS = ['bt-production-bacf.up.railway.app', '127.0.0.1','localhost']
-# CSRF_TRUSTED_ORIGINS = ['https://bt-production-bacf.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://bt-production-bacf.up.railway.app']
 # CSRF_COOKIE_SECURE = True
 # SESSION_COOKIE_SECURE = True
 LOGIN_URL = '/users/login'      
