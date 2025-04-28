@@ -1,4 +1,4 @@
-https://prod.liveshare.vsengsaas.visualstudio.com/join?C8C2C8D4659B07115BE9C7BD9DB6830F19F0
+https://prod.liveshare.vsengsaas.visualstudio.com/join?BB91A6E2CDF1AE39CBF8F0C8A7182F75D1A0
 
 bt-production-bacf.up.railway.app
 
