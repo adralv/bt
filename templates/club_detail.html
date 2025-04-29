@@ -10,9 +10,9 @@
       <img class="img-fluid rounded-circle mb-3" alt="Club Logo" style="width: 150px; height: 150px;">
       <hr>
       <div class="text-start">
-        <p><strong>Room:</strong> 126</p>
-        <p><strong>Club Name:</strong> Physics Club</p>
-        <p><strong>Created By:</strong> Mr. Zav</p>
+        <p><strong>Room:</strong> {{club.room_number}}</p>
+        <p><strong>Club Name:</strong>{{club.club_name}}</p>
+        <p><strong>Created By:</strong></p>
       </div>
     </div>
 
@@ -21,7 +21,7 @@
       <!-- Description -->
       <div class="card mb-4">
         <div class="card-body">
-          <h4 class="card-title">Description</h4>
+          <h4 class="card-title">{{club.description}}</h4>
           <p class="card-text">
             Welcome to the Physics Club! We break people down to build them back up stronger!
           </p>
