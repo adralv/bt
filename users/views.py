@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
+from django.contrib.auth import logout
 
 # Create your views here.
 def login(request):
@@ -19,11 +20,10 @@ def login(request):
     else:
         return render(request, 'accounts/login.html')
 
-def logout(request):
-    if request.method == "POST":
-        auth.logout(request)
-        messages.success(request, "You have been logged out.")
-        return redirect('login')
+def logout_view(request):
+    logout(request)
+    return redirect('login')
+
     # else:
     #     messages.error(request, "You must login first.")
     #     return redirect('login')
