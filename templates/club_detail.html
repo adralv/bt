@@ -1,83 +1,85 @@
-{% extends "base.html" %}
-{% load static %}
-{% block content %}
-{% load static %}
+  {% extends "base.html" %}
+  {% load static %}
+  {% block content %}
+  {% load static %}
 
-<!-- Main Content -->
-<div class="container my-4">
-  <div class="row">
-    <!-- Left Sidebar -->
-    <div class="col-md-3 text-center">
-      <img class="img-fluid rounded-circle mb-3" src="{{club.image}}" alt="Club Logo" style="width: 150px; height: 150px;">
-      <hr>
-      <div class="text-start">
-        <p><strong>Room:</strong> {{club.room_number}}</p>
-        <p><strong>Club Name:</strong>{{club.club_name}}</p>
-        {% comment %} <p><strong>Created By:</strong></p> {% endcomment %}
-      </div>
-    </div>
-
-    <!-- Right Content -->
-    <div class="col-md-9">
-      <!-- Description -->
-      <div class="card mb-4">
-        <div class="card-body">
-          <h4 class="card-title">{{club.description}}</h4>
-          {% comment %} <p class="card-text">          </p> {% endcomment %}
+  <!-- Main Content -->
+  <div class="container my-4">
+    <div class="row">
+      <!-- Left Sidebar -->
+      <div class="col-md-3 text-center">
+        <img class="card-img-top" src="{{club.image.url}}" alt="Club Logo" style="width: 250px; height: 150px;">
+        <hr>
+        <div class="text-start">
+          <p><strong>Room:</strong> {{club.room_number}}</p>
+          <p><strong>Club Name:</strong>{{club.club_name}}</p>
+          {% comment %} <p><strong>Created By:</strong></p> {% endcomment %}
         </div>
       </div>
 
-      <div class="row">
-        <!-- Announcements -->
-        <div class="col-md-8">
-          <div class="card mb-4">
-            <div class="card-body">
-              <h5 class="card-title">Announcements</h5>
-              <ul class="list-unstyled">
-                <li class="mb-2">
-                  <strong>First Meeting!</strong><br>
-                  <small>October 10, 2024</small><br>
-                  Our first meeting will be in Room 126 after school. You have 6 FRQs to complete!
-                </li>
-                <li class="mb-2">
-                  <strong>Lab Ideas</strong><br>
-                  <small>October 32, 2024</small><br>
-                  Submit your lab ideas by the end of the week!
-                </li>
-              </ul>
-            </div>
+      <!-- Right Content -->
+      <div class="col-md-9">
+        <!-- Description -->
+        <div class="card mb-4">
+          <div class="card-body">
+            <h4 class="card-title">{{club.description}}</h4>
+            {% comment %} <p class="card-text">          </p> {% endcomment %}
           </div>
         </div>
 
-        <!-- Meeting Schedule & Upcoming Events -->
-        <div class="col-md-4">
-          <div class="card mb-4">
-            <div class="card-body">
-              <h5 class="card-title">Meeting Schedule</h5>
-              <p>Every Thursday after school</p>
+        <div class="row">
+          <!-- Announcements -->
+          <div class="col-md-8">
+            <div class="card mb-4">
+              <div class="card-body">
+                <h5 class="card-title">Announcements</h5>
+                <ul class="list-unstyled">
+                  {% comment %} {% if events %} {% endcomment %}
+                    {% for announcement in announcements %}
+                      <li class="mb-2">
+                        <strong>{{announcement.title}}</strong><br>
+                        <small>{{announcement}}</small><br>
+                        {{announcement.description}}
+                      </li>
+                    {%endfor%}
+                  {% comment %} {%elif%}
+                  <li> <strong>No Announcements At the moment </strong></li>
+                  {%endif%} {% endcomment %}
+                </ul>
+              </div>
             </div>
           </div>
 
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Upcoming Events</h5>
-              <ul class="list-unstyled">
-                <li class="mb-2">
-                  <strong>Hackathon Kickoff</strong><br>
-                  <small>April 5, 2025</small>
-                </li>
-                <li class="mb-2">
-                  <strong>Guest Speaker</strong><br>
-                  <small>March 16, 2020</small>
-                </li>
-              </ul>
+          <!-- Meeting Schedule & Upcoming Events -->
+          <div class="col-md-4">
+            <div class="card mb-4">
+              <div class="card-body">
+                <h5 class="card-title">Meeting Schedule</h5>
+                <p>{{club.meeting_day}}</p>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Upcoming Events</h5>
+                
+                <ul class="list-unstyled">
+                  <li class="mb-2">
+                    <strong>Hackathon Kickoff</strong><br>
+                    <small>April 5, 2025</small>
+                  </li>
+                  <li class="mb-2">
+                    <strong>Guest Speaker</strong><br>
+                    <small>March 16, 2020</small>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
+
         </div>
-
       </div>
     </div>
   </div>
-</div>
 
-{% endblock %}
+  {% endblock %}
