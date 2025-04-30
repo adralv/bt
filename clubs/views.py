@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from .models import Club
+from Announcements.models import Announcements
 # Create your views here.
 @login_required
 def club_list(request):
@@ -16,7 +17,9 @@ def club_list(request):
 @login_required
 def club_details(request,club_id):
     club= Club.objects.get(id=club_id)
+    announcements=Announcements.objects.filter(club_id=club.id)
     context={
-        'club':club
+        'club':club,
+        'announcements':announcements
     }
     return render(request, 'club_detail.html',context)
