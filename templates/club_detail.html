@@ -1,18 +1,19 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+{% load static %}
 
 <!-- Main Content -->
 <div class="container my-4">
   <div class="row">
     <!-- Left Sidebar -->
     <div class="col-md-3 text-center">
-      <img class="img-fluid rounded-circle mb-3" alt="Club Logo" style="width: 150px; height: 150px;">
+      <img class="img-fluid rounded-circle mb-3" src="{{club.image}}" alt="Club Logo" style="width: 150px; height: 150px;">
       <hr>
       <div class="text-start">
         <p><strong>Room:</strong> {{club.room_number}}</p>
         <p><strong>Club Name:</strong>{{club.club_name}}</p>
-        <p><strong>Created By:</strong></p>
+        {% comment %} <p><strong>Created By:</strong></p> {% endcomment %}
       </div>
     </div>
 
@@ -22,9 +23,7 @@
       <div class="card mb-4">
         <div class="card-body">
           <h4 class="card-title">{{club.description}}</h4>
-          <p class="card-text">
-            Welcome to the Physics Club! We break people down to build them back up stronger!
-          </p>
+          {% comment %} <p class="card-text">          </p> {% endcomment %}
         </div>
       </div>
 
