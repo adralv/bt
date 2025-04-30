@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
-
 {% block content %}
+{% load static %}
 
 <header class="py-5 bg-light border-bottom mb-4">
     <div class="container">
@@ -60,21 +60,19 @@
         <!-- Club Grid -->
         <div class="col-lg-9">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-4 g-4">
-                {% if clubs %}
-                    {% for club in clubs %}
-                    <div class="col">
-                        <div class="card h-100 shadow-sm">
-                            <img class="card-img-top" alt="No Logo For Now">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">{{club.club_name}}</h5>
-                            </div>
-                            <div class="card-footer text-center">
-                                <a href="{% url 'club_details' club.id %}" class="btn btn-primary btn-sm">View</a>
-                            </div>
+                {% for club in clubs %}
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        <img class="card-img-top" src="{{ club.image.url }}" alt="{{ club.club_name }}">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">{{club.club_name}}</h5>
+                        </div>
+                        <div class="card-footer text-center">
+                            <a href="{% url 'club_details' club.id %}" class="btn btn-primary btn-sm">View</a>
                         </div>
                     </div>
-                    {% endfor %} 
-                {% endif %}
+                </div>
+                {% endfor %} 
             </div>
             <nav class="mt-4">
                 <ul class="pagination justify-content-center">
@@ -111,4 +109,4 @@
     </div>
 </div>
 
-{% endblock content %}
+{% endblock %}
