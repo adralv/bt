@@ -85,13 +85,15 @@
             <div class="card mb-4 text-center">
                 <div class="card-header">Your Profile</div>
                 <div class="card-body">
-                    <img src="{% static 'images/default-pfp.png' %}" alt="Profile Picture" class="rounded-circle mb-3" width="120" height="120">
+                    <img src="{{ user_profile.profile_picture.url }}" alt="Profile Picture" class="rounded-circle mb-3" width="120" height="120">
                     <h5 class="card-title">{{user.username}}</h5>
-                    <p class="card-text">Top Clubs:</p>
+                    <p class="card-text">My Clubs:</p>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">🏐 Black Student Union</li>
-                        <li class="list-group-item">📘 Coding Club</li>
-                        <li class="list-group-item">🏀 Basketball Club</li>
+                        {%for club in clubs%}
+                            {%if user in club.club_members.all%}
+                                <li class="list-group-item">{{club.club_name}}</li>
+                            {%endif%}
+                        {%endfor%}
                     </ul>
                 </div>
             </div>
