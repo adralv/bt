@@ -69,7 +69,8 @@ INSTALLED_APPS = [
     'pages',
     'clubs',
     'users',
-    'Announcements'
+    'Announcements',
+    ''
     
 ]
 
