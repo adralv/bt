@@ -6,10 +6,11 @@ class Event(models.Model):
     public_event = models.BooleanField(default=False)
     club=models.ForeignKey(Club,on_delete=models.CASCADE)
     description = models.TextField(blank=True)
-    date=models.DateField()
-    choices =[('Tournament', 'Tournament'),('Bake Sale', 'Bake Sale'),('School Event', 'School Event')]
-    type = models.CharField(
-        choices= choices,
-        default ="Bake Sale")
-    type2 = models.CharField(choices= [('Round Robin', 'Round Robin'),('Single Elimination', 'Single Elimination'),('Double Elimination', 'Double Elimination')], default=None, null=True)
+    start=models.DateField(default=None)
+    end = models.DateField(default=None)
+    # choices =[('Tournament', 'Tournament'),('Bake Sale', 'Bake Sale'),('School Event', 'School Event')]
+    # type = models.CharField(
+    #     choices= choices,
+    #     default ="Bake Sale")
+    # type2 = models.CharField(choices= [('Round Robin', 'Round Robin'),('Single Elimination', 'Single Elimination'),('Double Elimination', 'Double Elimination')], default=None, null=True)
     
