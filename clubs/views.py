@@ -7,7 +7,7 @@ from Announcements.models import Announcements
 @login_required
 def club_list(request):
     clubs = Club.objects.all()
-    paginator = Paginator(clubs,6)
+    paginator = Paginator(clubs,8)
     page = request.GET.get('page')
     paged_clubs = paginator.get_page(page)
     context = {

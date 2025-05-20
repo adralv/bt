@@ -16,3 +16,5 @@ class Club(models.Model):
     
     
     # actvities=models.ArrayField(base_field=)
+
+    

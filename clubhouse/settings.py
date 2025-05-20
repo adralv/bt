@@ -11,10 +11,10 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 # from dotenv import load_dotenv
-# load_dotenv()
+from dotenv import load_dotenv
+load_dotenv()
 
 from pathlib import Path
-# from dotenv import load_dotenv
 # from supabase import create_client
 import os
 
@@ -33,9 +33,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 
-# DB_PASSWORD = os.getenv('DB_PASSWORD')
-# DB_HOST = os.getenv('DB_HOST')
-# SECRET_KEY = os.getenv('SECRET_KEY')
+DB_PASSWORD = os.getenv('DB_PASSWORD')
+DB_HOST = os.getenv('DB_HOST')
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -46,7 +46,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-hrznqtdze+_fh-12)fbcane2a52kjmxsp5xu6hrgk0(0yx4v35'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -70,8 +69,7 @@ INSTALLED_APPS = [
     'clubs',
     'users',
     'Announcements',
-    ''
-    
+    'event',
 ]
 
 MIDDLEWARE = [
@@ -120,8 +118,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'defaultdb',
         'USER': 'avnadmin',
-        'PASSWORD': 'AVNS_p2gWvED5SPNxR8o7JZM',
-        'HOST': 'pg-5cfe4b8-classicalalter-74dc.b.aivencloud.com',
+        'PASSWORD': DB_PASSWORD,
+        'HOST': DB_HOST,
         'PORT': '10161',
     }
 }

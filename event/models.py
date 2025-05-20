@@ -7,7 +7,7 @@ class Event(models.Model):
     club=models.ForeignKey(Club,on_delete=models.CASCADE)
     description = models.TextField(blank=True)
     date=models.DateField()
-    choices =[('Tournament', 'Tournament'),('Bake Sale', 'Bake Sale'),('School Event', 'School Event')],
+    choices =[('Tournament', 'Tournament'),('Bake Sale', 'Bake Sale'),('School Event', 'School Event')]
     type = models.CharField(
         choices= choices,
         default ="Bake Sale")
