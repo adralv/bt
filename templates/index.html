@@ -21,12 +21,41 @@
                     <div class="small text-muted">Bergen Tech Club Events Calendar</div>
                     <h2 class="card-title">Upcoming Club Events!</h2>
                     <div class="ratio ratio-16x9">
-                        <iframe src="https://calendar.google.com/calendar/embed?src=7135c8585bdfa697a1280319a20907dc368e473e166cdb6b99a6d9af01e6b43a%40group.calendar.google.com&ctz=America%2FNew_York" 
+                        <!-- <iframe src="https://calendar.google.com/calendar/embed?src=7135c8585bdfa697a1280319a20907dc368e473e166cdb6b99a6d9af01e6b43a%40group.calendar.google.com&ctz=America%2FNew_York" 
                         style="border: 0" 
                         width="800" 
                         height="600" 
                         frameborder="0" 
-                        scrolling="no"></iframe>
+                        scrolling="no"></iframe> -->
+                        
+                        {% if events %}
+                            {% for event in events %}
+                                {% if event.public_event %}
+                                    <div class="card my-3"> 
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ event.title }}</h5>
+                                            <h6 class="card-subtitle mb-2 text-muted">
+                                                {{ event.club.club_name }} &mdash; {{ event.start }} to {{ event.end }}
+                                            </h6>
+                                            <p class="card-text">{{ event.description|linebreaks }}</p>
+                                            <span class="badge bg-success">Public</span>
+                                        </div>
+                                    </div>
+                                {% elif event.club in clubs %}
+                                    {# Club member event - show it #}
+                                    <div class="card my-3"> 
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ event.title }}</h5>
+                                            <h6 class="card-subtitle mb-2 text-muted">
+                                                {{ event.club.club_name }} &mdash; {{ event.start }} to {{ event.end }}
+                                            </h6>
+                                            <p class="card-text">{{ event.description|linebreaks }}</p>
+                                            <span class="badge bg-primary">Members Only</span>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                {%endfor%}
+                            {%endif%}
                     </div>
                 </div>
             </div>
@@ -40,11 +69,13 @@
                     <h5 class="card-title">{{user.username}}</h5>
                     <p class="card-text">My Clubs:</p>
                     <ul class="list-group list-group-flush">
-                        {%for club in clubs%}
-                            {%if user in club.club_members.all%}
-                                <li class="list-group-item">{{club.club_name}}</li>
-                            {%endif%}
-                        {%endfor%}
+                        {% if clubs  %}
+                            {%for club in clubs%}
+                                {%if user in club.club_members.all%}
+                                    <li class="list-group-item">{{club.club_name}}</li>
+                                {%endif%}
+                            {%endfor%}
+                        {%endif%}
                     </ul>
                 </div>
             </div>

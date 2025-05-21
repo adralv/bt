@@ -11,7 +11,7 @@ def index(request):
     try:
         user_profile = UserProfile.objects.get(user=user)
         clubs = Club.objects.filter(club_members=user)
-        event = Event.objects.all()
+        events = Event.objects.all()
     except UserProfile.DoesNotExist:
         user_profile = None  
     
@@ -19,8 +19,10 @@ def index(request):
         'user': user,
         'clubs': clubs,
         'user_profile': user_profile,
-        'event': event
+        'events': events,
+        # 'length': len(events)
     }
+    
     return render(request, 'index.html', context)
 
 @login_required

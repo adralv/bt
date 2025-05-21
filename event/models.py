@@ -8,6 +8,8 @@ class Event(models.Model):
     description = models.TextField(blank=True)
     start=models.DateField(default=None)
     end = models.DateField(default=None)
+    def __str__(self):
+        return self.title
     # choices =[('Tournament', 'Tournament'),('Bake Sale', 'Bake Sale'),('School Event', 'School Event')]
     # type = models.CharField(
     #     choices= choices,

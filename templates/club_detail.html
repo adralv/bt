@@ -12,8 +12,7 @@
         <hr>
         <div class="text-start">
           <p><strong>Room:</strong> {{club.room_number}}</p>
-          <p><strong>Club Name:</strong>{{club.club_name}}</p>
-          {% comment %} <p><strong>Created By:</strong></p> {% endcomment %}
+          <p><strong>Club Name:</strong> {{club.club_name}}</p>
         </div>
       </div>
 
@@ -23,7 +22,6 @@
         <div class="card mb-4">
           <div class="card-body">
             <h4 class="card-title">{{club.description}}</h4>
-            {% comment %} <p class="card-text">          </p> {% endcomment %}
           </div>
         </div>
 
@@ -34,7 +32,7 @@
               <div class="card-body">
                 <h5 class="card-title">Announcements</h5>
                 <ul class="list-unstyled">
-                  {% comment %} {% if events %} {% endcomment %}
+                  {% if announcements %}
                     {% for announcement in announcements %}
                       <li class="mb-2">
                         <strong>{{announcement.title}}</strong><br>
@@ -42,10 +40,10 @@
                         {{announcement.description}}
                       </li>
                     {%endfor%}
-                  {% comment %} {%elif%}
-                  <li> <strong>No Announcements At the moment </strong></li>
-                  {%endif%} {% endcomment %}
-                </ul>
+                  {%else%}
+                    <li><strong>No Announcements At the moment </strong></li>
+                  {%endif%}
+                  </ul>
               </div>
             </div>
           </div>
@@ -64,14 +62,27 @@
                 <h5 class="card-title">Upcoming Events</h5>
                 
                 <ul class="list-unstyled">
-                  <li class="mb-2">
-                    <strong>Hackathon Kickoff</strong><br>
-                    <small>April 5, 2025</small>
-                  </li>
-                  <li class="mb-2">
-                    <strong>Guest Speaker</strong><br>
-                    <small>March 16, 2020</small>
-                  </li>
+                  {% if events %}
+                    {% for event in events %}
+                      {% if event.club in clubs %}
+                          <li>
+                            <div class="card my-3"> 
+                              <div class="card-body">
+                                <h5 class="card-title">{{ event.title }}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">
+                                  {{ event.club.club_name }} &mdash; {{ event.start }} to {{ event.end }}
+                                </h6>
+                                <p class="card-text">{{ event.description|linebreaks }}</p>
+                              </div>
+                            </div>
+                          </li>
+                        {% else %}
+                          <li>
+                            <p><strong>No events for {{ event.club }}</strong></p>
+                          </li>
+                      {%endif%}
+                    {%endfor%}
+                  {%endif%}
                 </ul>
               </div>
             </div>

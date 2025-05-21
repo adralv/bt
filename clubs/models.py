@@ -13,6 +13,8 @@ class Club(models.Model):
     teacher=models.CharField(max_length=100, default='null')
     meeting_day=models.TextField(blank=True)
     # announcments= models.ManyToManyField
+    def __str__(self):
+        return self.club_name
     
     
     # actvities=models.ArrayField(base_field=)
