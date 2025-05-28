@@ -29,6 +29,7 @@ import os
 # # Correct MEDIA_URL format
 # MEDIA_URL = f"{SUPABASE_URL}/storage/v1/object/public/media/"
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
@@ -37,6 +38,7 @@ DB_PASSWORD = os.getenv('DB_PASSWORD')
 DB_HOST = os.getenv('DB_HOST')
 SECRET_KEY = os.getenv('SECRET_KEY')
 
+SECRET_KEY = SECRET_KEY
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
