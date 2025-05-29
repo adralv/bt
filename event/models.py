@@ -6,10 +6,13 @@ class Event(models.Model):
     public_event = models.BooleanField(default=False)
     club=models.ForeignKey(Club,on_delete=models.CASCADE)
     description = models.TextField(blank=True)
-    start=models.DateField(default=None)
-    end = models.DateField(default=None)
+    start=models.DateTimeField(default=None)
+    end = models.DateTimeField(default=None)
+    
     def __str__(self):
         return self.title
+    class Meta:
+        ordering = ['start']
     # choices =[('Tournament', 'Tournament'),('Bake Sale', 'Bake Sale'),('School Event', 'School Event')]
     # type = models.CharField(
     #     choices= choices,
