@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from .models import Club
 from Announcements.models import Announcements
+from django.contrib.auth.models import User
 # Create your views here.
 @login_required
 def club_list(request):
@@ -23,3 +24,9 @@ def club_details(request,club_id):
         'announcements':announcements
     }
     return render(request, 'club_detail.html',context)
+
+@login_required
+def join_club(request, club_id):
+    club= Club.objects.get(id=club_id)
+    club.club_members.add(request.user)
+    return redirect('club_details',club_id=club_id)
