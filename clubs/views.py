@@ -30,3 +30,8 @@ def join_club(request, club_id):
     club= Club.objects.get(id=club_id)
     club.club_members.add(request.user)
     return redirect('club_details',club_id=club_id)
+@login_required
+def leave_club(request, club_id):
+    club= Club.objects.get(id=club_id)
+    club.club_members.remove(request.user)
+    return redirect('club_details',club_id=club_id)
