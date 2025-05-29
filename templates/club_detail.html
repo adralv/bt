@@ -13,6 +13,12 @@
         <div class="text-start">
           <p><strong>Room:</strong> {{club.room_number}}</p>
           <p><strong>Club Name:</strong> {{club.club_name}}</p>
+          <p><strong>Teacher:</strong> {{club.teacher}}</p>
+          {%if user in club.club_members.all%}
+            <a href="{% url 'leave_club' club.id %}" class="btn btn-success mt-3" style="background:red; border:red;">Leave Club</a>
+          {%else%}
+          <a href="{% url 'join_club' club.id %}" class="btn btn-success mt-3">Join Club</a>
+          {%endif%}
         </div>
       </div>
 
@@ -64,7 +70,6 @@
                 <ul class="list-unstyled">
                   {% if events %}
                     {% for event in events %}
-                      {% if event.club in clubs %}
                           <li>
                             <div class="card my-3"> 
                               <div class="card-body">
@@ -76,14 +81,12 @@
                               </div>
                             </div>
                           </li>
-                        {% else %}
-                          <li>
-                            <p><strong>No events for {{ event.club }}</strong></p>
-                          </li>
-                      {%endif%}
                     {%endfor%}
+                  {% else %}
+                  <li>
+                    <p><strong>No events for {{ club.club_name }}</strong></p>
+                  </li>
                   {%endif%}
-                  <a href="{% url 'join_club' club.id %}" class="btn btn-success mt-3">Join Club</a>
                 </ul>
               </div>
             </div>
