@@ -15,25 +15,27 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from pathlib import Path
-# from supabase import create_client
+
 import os
 
-# from supabase import create_client
-# SUPABASE_URL = os.getenv("SUPABASE_URL")
-# SUPABASE_KEY = os.getenv("SUPABASE_KEY")
-# # Ensure SUPABASE_URL is not None
-# if not SUPABASE_URL:
-#     raise ValueError("SUPABASE_URL is not set in environment variables")
-# # Create Supabase Client
-# supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
-# # Correct MEDIA_URL format
-# MEDIA_URL = f"{SUPABASE_URL}/storage/v1/object/public/media/"
+from supabase import create_client
+SUPABASE_URL = os.getenv("SUPABASE_URL")
+SUPABASE_KEY = os.getenv("SUPABASE_KEY")
+# Ensure SUPABASE_URL is not None
+if not SUPABASE_URL:
+    raise ValueError("SUPABASE_URL is not set in environment variables")
+# Create Supabase Client
+supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
+# Correct MEDIA_URL format
+MEDIA_URL = f"{SUPABASE_URL}/storage/v1/object/public/media/"
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-
+SUPABASE_URL = os.getenv('SUPABASE_URL')
+SUPABASE_KEY = os.getenv('SUPABASE_KEY')
 DB_PASSWORD = os.getenv('DB_PASSWORD')
 DB_HOST = os.getenv('DB_HOST')
 SECRET_KEY = os.getenv('SECRET_KEY')

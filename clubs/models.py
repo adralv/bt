@@ -12,6 +12,8 @@ class Club(models.Model):
     email= models.EmailField((""), max_length=250)
     teacher=models.CharField(max_length=100, default='null')
     meeting_day=models.TextField(blank=True)
+    
+
     # announcments= models.ManyToManyField
     def __str__(self):
         return self.club_name

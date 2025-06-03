@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from clubs.models import Club
 from users.models import UserProfile
 from event.models import Event
+from django.utils.timezone import now
+
 # Create your views here.
 @login_required
 def index(request):
@@ -12,6 +14,10 @@ def index(request):
         user_profile = UserProfile.objects.get(user=user)
         clubs = Club.objects.filter(club_members=user)
         events = Event.objects.all()
+        valid_events = [
+        event for event in events
+        if (event.public_event or event.club in clubs) and event.end >= now()
+    ]
     except UserProfile.DoesNotExist:
         user_profile = None  
     
@@ -19,7 +25,7 @@ def index(request):
         'user': user,
         'clubs': clubs,
         'user_profile': user_profile,
-        'events': events,
+        'events': valid_events,
         # 'length': len(events)
     }
     
