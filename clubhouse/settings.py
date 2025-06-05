@@ -11,14 +11,14 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 # from dotenv import load_dotenv
+from supabase import create_client
 from dotenv import load_dotenv
-load_dotenv()
 
+load_dotenv()
 from pathlib import Path
 
 import os
 
-from supabase import create_client
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_KEY = os.getenv("SUPABASE_KEY")
 # Ensure SUPABASE_URL is not None
@@ -56,6 +56,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['bt-production-bacf.up.railway.app', '127.0.0.1','localhost', 'bt-production-7150.up.railway.app']
 CSRF_TRUSTED_ORIGINS = ['https://bt-production-bacf.up.railway.app', 'https://bt-production-7150.up.railway.app']
+TAGGIT_CASE_INSENSITIVE = True
 # CSRF_COOKIE_SECURE = True
 # SESSION_COOKIE_SECURE = True
 LOGIN_URL = '/users/login'      
@@ -74,6 +75,7 @@ INSTALLED_APPS = [
     'users',
     'Announcements',
     'event',
+    'taggit',
 ]
 
 MIDDLEWARE = [

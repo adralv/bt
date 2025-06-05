@@ -15,21 +15,23 @@ def index(request):
         clubs = Club.objects.filter(club_members=user)
         events = Event.objects.all()
         valid_events = [
-        event for event in events
-        if (event.public_event or event.club in clubs) and event.end >= now()
-    ]
+            event for event in events
+            if (event.public_event or event.club in clubs) and event.end >= now()
+        ]
     except UserProfile.DoesNotExist:
         user_profile = None  
-    
+        clubs = Club.objects.none()  # No clubs
+        valid_events = Event.objects.filter(public_event=True, end__gte=now())  # Only public future events
+
     context = {
         'user': user,
         'clubs': clubs,
         'user_profile': user_profile,
         'events': valid_events,
-        # 'length': len(events)
     }
     
     return render(request, 'index.html', context)
+
 
 @login_required
 def contact(request):

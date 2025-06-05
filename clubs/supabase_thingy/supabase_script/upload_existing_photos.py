@@ -9,7 +9,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         SUPABASE_URL = os.getenv("SUPABASE_URL")
-        SUPABASE_KEY = os.getenv("SUPABASE_KEY")
+        SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZjbmR3aHFsc2djZ3VpZmhndnR6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI4Mjk3MTksImV4cCI6MjA1ODQwNTcxOX0.yOZny9VBLW3b2W8SqYs4ryYMqQEZdhL70U_9y0V31W4'
         supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
         media_folder = os.path.join(settings.MEDIA_ROOT, "photos")
@@ -31,19 +31,19 @@ class Command(BaseCommand):
                     print(f"📤 Checking if {supabase_path} exists in Supabase...")
 
                     # **Step 1: Check if file exists in Supabase**
-                    existing_files = supabase.storage.from_("media").list("photos/")
+                    existing_files = supabase.storage.from_("meedia").list("photos/")
                     existing_paths = [file["name"] for file in existing_files]
 
                     if supabase_path in existing_paths:
                         print(f"🔄 File {supabase_path} already exists. Deleting before re-uploading.")
-                        supabase.storage.from_("media").remove([supabase_path])
+                        supabase.storage.from_("meedia").remove([supabase_path])
 
                     # **Step 2: Upload File to Supabase**
                     print(f"📤 Uploading {relative_path} to Supabase as {supabase_path}...")
 
                     with open(file_path, "rb") as file:
                         try:
-                            response = supabase.storage.from_("media").upload(
+                            response = supabase.storage.from_("meedia").upload(
                                 supabase_path, file, file_options={"content-type": "image/jpeg"}
                             )
                             if response and hasattr(response, "error") and response.error:

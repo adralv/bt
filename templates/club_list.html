@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-{% load static %}
+
 
 <header class="py-5 bg-light border-bottom mb-4">
     <div class="container">
@@ -22,37 +22,33 @@
                     <form method="GET">
                         <!-- Search Bar -->
                         <div class="mb-3">
-                            <label for="search" class="form-label">Search Clubs</label>
-                            <input type="text" class="form-control" id="search" name="search" placeholder="Club name...">
+                            <label for="keywords" class="form-label">Search Clubs</label>
+                            <input 
+                                type="text" 
+                                class="form-control" 
+                                id="keywords" 
+                                name="keywords" 
+                                placeholder="Club name..." 
+                                value="{{ request.GET.keywords|default:'' }}">
                         </div>
 
-                        <!-- Filter Options -->
+                        <!-- Filter by Tag -->
                         <div class="mb-3">
-                            <label class="form-label">Filter by Category</label>
-                            <select class="form-select" name="category">
-                                <option selected>All</option>
-                                <option>Academic</option>
-                                <option>Sports</option>
-                                <option>STEM</option>
-                                <option>Arts</option>
-                                <option>Service</option>
+                            <label for="tag" class="form-label">Filter by Tag</label>
+                            <select class="form-select" name="tag" id="tag">
+                                <option value="">All</option>
+                                {% for tag in tags %}
+                                    <option value="{{ tag.name }}" {% if request.GET.tag|default:'' == tag.name %}selected{% endif %}>
+                                        {{ tag.name|capfirst }}
+                                    </option>
+                                {% endfor %}
                             </select>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Filter by Teacher</label>
-                            <select class="form-select" name="category">
-                                <option selected>All</option>
-                                <option>Mr. Zav</option>
-                                <option>Mr. Gemici</option>
-                                <option>Mr. Pena</option>
-                                <option>Mrs. Orsen</option>
-                                <option>Ms. Michaels</option>
-                            </select>
-                        </div>
-
-                        <button type="submit" class="btn btn-secondary w-100" disabled>Apply</button>
+                        <button type="submit" class="btn btn-secondary w-100">Apply</button>
                     </form>
+
+
                 </div>
             </div>
         </div>
@@ -63,7 +59,10 @@
                 {% for club in clubs %}
                 <div class="col">
                     <div class="card h-100 shadow-sm">
-                        <img class="card-img-top" src="{{ club.image.url }}" alt="{{ club.club_name }}">
+                        <img class="card-img-top" 
+                        style="height: 180px; width: 100%; object-fit: contain; background-color: #f8f9fa;" 
+                        src="{{ club.image.url }}" 
+                        alt="{{ club.club_name }}">
                         <div class="card-body">
                             <h5 class="card-title text-center">{{club.club_name}}</h5>
                         </div>
@@ -74,25 +73,28 @@
                 </div>
                 {% endfor %} 
             </div>
-            <nav>
-                <ul class="pagination justify-content-center">
-                  {% if page_obj.has_previous %}
-                    <li class="page-item">
-                      <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-                    </li>
-                  {% endif %}
-              
-                  <li class="page-item disabled">
-                    <span class="page-link">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
-                  </li>
-              
-                  {% if page_obj.has_next %}
-                    <li class="page-item">
-                      <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
-                    </li>
-                  {% endif %}
-                </ul>
-              </nav>              
+        <nav class = 'my-4' aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+
+            {% if clubs.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ clubs.previous_page_number }}">Previous</a>
+            </li>
+            {% endif %}
+
+            <li class="page-item disabled">
+            <span class="page-link">Page {{ clubs.number }} of {{ clubs.paginator.num_pages }}</span>
+            </li>
+
+            {% if clubs.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ clubs.next_page_number }}">Next</a>
+            </li>
+            {% endif %}
+
+        </ul>
+        </nav>
+    
         </div>
     </div>
 </div>
