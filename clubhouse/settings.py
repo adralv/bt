@@ -20,7 +20,7 @@ from pathlib import Path
 import os
 
 SUPABASE_URL = os.getenv("SUPABASE_URL")
-SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZjbmR3aHFsc2djZ3VpZmhndnR6Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0MjgyOTcxOSwiZXhwIjoyMDU4NDA1NzE5fQ.rCUbEqB7ZlSVSIo3dyIYYlfQfdgwbJEzEXk-gmvnvRc'
+SUPABASE_KEY = os.getenv("SUPABASE_KEY")
 # Ensure SUPABASE_URL is not None
 if not SUPABASE_URL:
     raise ValueError("SUPABASE_URL is not set in environment variables")
