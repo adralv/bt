@@ -20,7 +20,7 @@ from pathlib import Path
 import os
 
 SUPABASE_URL = os.getenv("SUPABASE_URL")
-SUPABASE_KEY = os.getenv("SUPABASE_KEY")
+SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZjbmR3aHFsc2djZ3VpZmhndnR6Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0MjgyOTcxOSwiZXhwIjoyMDU4NDA1NzE5fQ.rCUbEqB7ZlSVSIo3dyIYYlfQfdgwbJEzEXk-gmvnvRc'
 # Ensure SUPABASE_URL is not None
 if not SUPABASE_URL:
     raise ValueError("SUPABASE_URL is not set in environment variables")
@@ -31,19 +31,15 @@ MEDIA_URL = f"{SUPABASE_URL}/storage/v1/object/public/media/"
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+# MEDIA_URL = '/media/' 
 
-SUPABASE_URL = os.getenv('SUPABASE_URL')
-SUPABASE_KEY = os.getenv('SUPABASE_KEY')
 DB_PASSWORD = os.getenv('DB_PASSWORD')
 DB_HOST = os.getenv('DB_HOST')
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 SECRET_KEY = SECRET_KEY
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -170,6 +166,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'clubhouse/static')
 ]
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
