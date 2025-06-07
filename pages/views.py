@@ -1,11 +1,13 @@
-from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from clubs.models import Club
 from users.models import UserProfile
 from event.models import Event
+from Announcements.models import Announcements
 from django.utils.timezone import now
-
+from django.core.mail import send_mail
+from django.shortcuts import render, redirect
+from django.contrib import messages
 # Create your views here.
 @login_required
 def index(request):
@@ -18,6 +20,7 @@ def index(request):
             event for event in events
             if (event.public_event or event.club in clubs) and event.end >= now()
         ]
+        total_events = [event for event in events if (event.public_event or event.club in clubs)]
     except UserProfile.DoesNotExist:
         user_profile = None  
         clubs = Club.objects.none()  # No clubs
@@ -28,13 +31,45 @@ def index(request):
         'clubs': clubs,
         'user_profile': user_profile,
         'events': valid_events,
+        'total_events':total_events
     }
     
     return render(request, 'index.html', context)
 
 
+
+
 @login_required
 def contact(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        subject = request.POST.get('subject', 'No Subject')
+        message = request.POST.get('message')
+        user_email = request.user.email  # Automatically use user's email
+
+        full_message = f"""
+        You have received a new contact form submission:
+
+        From: {name}
+        Email: {user_email}
+
+        Message:
+        {message}
+        """
+
+        try:
+            send_mail(
+                subject=subject,
+                message=full_message,
+                from_email=user_email,
+                recipient_list=['ravpatw26@bergen.org'],
+                fail_silently=False,
+            )
+            messages.success(request, 'Your message has been sent successfully!')
+            return redirect('contact')  # Make sure this name matches your URL
+        except Exception as e:
+            messages.error(request, f'Error sending email: {e}')
+
     return render(request, 'contact.html')
 
 def create_announcement(request, club_id):
@@ -55,4 +90,3 @@ def create_announcement(request, club_id):
         return redirect('club_details', club_id=club.id)  # Redirect back to the club page
 
     return render(request, 'announcement.html', {'club': club})
-
