@@ -44,6 +44,13 @@
             <div class="card mb-4">
               <div class="card-body">
                 <h5 class="card-title">Announcements</h5>
+                    {% if user in club.club_members.all %}
+                        <div class="mb-3 text-start">
+                            <a href="{% url 'create_announcement' club.id %}" class="btn btn-outline-primary">
+                            📣 Create Announcement
+                            </a>
+                        </div>
+                    {% endif %}
                 <ul class="list-unstyled">
                   {% if announcements %}
                     {% for announcement in announcements %}
