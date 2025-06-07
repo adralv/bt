@@ -34,7 +34,7 @@ def club_list(request):
 def club_details(request,club_id):
     club= Club.objects.get(id=club_id)
     events= Event.objects.filter(club_id=club_id)
-    announcements=Announcements.objects.filter(club=club)
+    announcements=Announcements.objects.filter(club=club).order_by('date').reverse()
     valid_events = [
         event for event in events
         if event.end >= now()
