@@ -36,3 +36,23 @@ def index(request):
 @login_required
 def contact(request):
     return render(request, 'contact.html')
+
+def create_announcement(request, club_id):
+    club = Club.objects.get( id=club_id)
+    if request.method == 'POST':
+        title = request.POST['title']
+        description = request.POST['description']
+        date = request.POST['date']
+        location = request.POST['location']
+
+        Announcements.objects.create(
+            club=club,
+            title=title,
+            description=description,
+            date=date,
+            location=location
+        )
+        return redirect('club_details', club_id=club.id)  # Redirect back to the club page
+
+    return render(request, 'announcement.html', {'club': club})
+
