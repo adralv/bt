@@ -1,5 +1,6 @@
 from django.db import models
 from clubs.models import Club
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Announcements(models.Model):
@@ -9,6 +10,7 @@ class Announcements(models.Model):
     description = models.CharField()
     date = models.DateTimeField()
     location = models.IntegerField()
+    user = models.OneToOneField(User, on_delete=models.CASCADE, default=None)
     
     
     def __str__(self):

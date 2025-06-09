@@ -8,6 +8,12 @@ from django.utils.timezone import now
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from datetime import datetime
+from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import csrf_protect
+from django.http import JsonResponse, HttpResponseForbidden
+from django.shortcuts import get_object_or_404
+
 # Create your views here.
 @login_required
 def index(request):
@@ -73,20 +79,33 @@ def contact(request):
     return render(request, 'contact.html')
 
 def create_announcement(request, club_id):
-    club = Club.objects.get( id=club_id)
-    if request.method == 'POST':
+    club = Club.objects.get(id=club_id)
+    if request.method == 'POST' and request.user.is_superuser:
         title = request.POST['title']
         description = request.POST['description']
-        date = request.POST['date']
-        location = request.POST['location']
+        date = datetime.now()
+        location = club.room_number
 
         Announcements.objects.create(
             club=club,
             title=title,
             description=description,
             date=date,
-            location=location
+            location=location,
+            user=request.user
         )
         return redirect('club_details', club_id=club.id)  # Redirect back to the club page
 
     return render(request, 'announcement.html', {'club': club})
+
+# @require_POST
+# @csrf_protect
+# def del_announcement(request, club_id, announcement_id):
+#     announcement = get_object_or_404(Announcements, id=announcement_id, club_id=club_id)
+
+#     # Allow only the user who created it or a superuser
+#     if request.user != announcement.user and not request.user.is_superuser:
+#         return HttpResponseForbidden("You don't have permission to delete this.")
+
+#     announcement.delete()
+#     return JsonResponse({'success': True})
