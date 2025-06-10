@@ -26,8 +26,12 @@ if not SUPABASE_URL:
     raise ValueError("SUPABASE_URL is not set in environment variables")
 # Create Supabase Client
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
+# /friend
+SUPABASE_BUCKET_NAME = "media"
+SUPABASE_STORAGE_URL = f"{SUPABASE_URL}/storage/v1/object/public/{SUPABASE_BUCKET_NAME}"
+
 # Correct MEDIA_URL format
-MEDIA_URL = f"{SUPABASE_URL}/storage/v1/object/public/media/"
+MEDIA_URL = SUPABASE_STORAGE_URL + '/'
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -173,10 +177,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com' 
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'btcomp26@gmail.com'        
-EMAIL_HOST_PASSWORD = 'pfxvkayqjyfknhyh'  
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+DEFAULT_FILE_STORAGE = 'clubhouse.storage_backends.SupabaseStorage'  

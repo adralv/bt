@@ -2,7 +2,7 @@
   {% load static %}
   {% block content %}
   {% load static %}
-
+  
   <style>
     .delete-btn {
       display: none;
@@ -73,23 +73,23 @@
                         </div>
                     {% endif %}
                 <ul class="list-unstyled">
-                  {% if announcements %}
-                    {% for announcement in announcements %}
-                      <li class="mb-2" data-ann-id="{{announcement.id}}">
-                        <div>
-                        <strong>{{announcement.title}}</strong><br>
-                        <small>{{announcement}}</small><br>
-                        {{announcement.description}}
-                        </div>
-                        <!-- {% if request.user.id == announcement.user.id %}
-                            <button class="delete-btn" onclick="deleteAnnouncement({{club.id}}, {{announcement.id}})">&times;</button>
-                        {% endif %} -->
-                      </li>
-                    {%endfor%}
-                  {%else%}
-                    <li><strong>No Announcements At the moment </strong></li>
-                  {%endif%}
-                  </ul>
+                {% if announcements %}
+                  {% for announcement in announcements %}
+                    <li class="mb-3 position-relative p-3 border rounded announcement-item" data-ann-id="{{announcement.id}}">
+                      <strong>{{announcement.title}}</strong><br>
+                      <small>{{announcement}}</small><br>
+                      <div>{{announcement.description}}</div>
+
+                      {% if request.user.id == announcement.user.id %}
+                        <button class="delete-btn" onclick="deleteAnnouncement({{club.id}}, {{announcement.id}})">&times;</button>
+                      {% endif %}
+                    </li>
+                  {% endfor %}
+                {% else %}
+                  <li><strong>No Announcements At the moment</strong></li>
+                {% endif %}
+              </ul>
+
               </div>
             </div>
           </div>
@@ -136,34 +136,33 @@
       </div>
     </div>
   </div>
+  
+<script>
+  const csrfToken = '{{ csrf_token }}';
 
-  <!-- <script>
-    const csrfToken = '{{ csrf_token }}';
+  function deleteAnnouncement(clubId, announcementId) {
+    if (!confirm("Are you sure you want to delete this announcement?")) return;
 
-    function deleteAnnouncement(clubId, announcementId) {
-      if (!confirm("Are you sure you want to delete this announcement?")) return;
-
-      fetch(`/clubs/${clubId}/announcements/${announcementId}/delete/`, {
-        method: 'POST',
-        headers: {
-          'X-CSRFToken': csrfToken,
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include'
-      })
-      .then(response => {
-        if (response.ok) {
-          document.querySelector(`[data-ann-id="${announcementId}"]`).remove();
-        } else {
-          alert("Failed to delete announcement.");
-        }
-      })
-      .catch(error => {
-        console.error(error);
-        alert("Error deleting announcement.");
-      });
-    }
-  </script> -->
-
+    fetch(`/clubs/${clubId}/announcements/${announcementId}/delete/`, {
+      method: 'POST',
+      headers: {
+        'X-CSRFToken': csrfToken,
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include'
+    })
+    .then(response => {
+      if (response.ok) {
+        document.querySelector(`[data-ann-id="${announcementId}"]`).remove();
+      } else {
+        alert("Failed to delete announcement.");
+      }
+    })
+    .catch(error => {
+      console.error(error);
+      alert("Error deleting announcement.");
+    });
+  }
+</script>
 
 {% endblock %}
