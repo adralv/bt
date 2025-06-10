@@ -52,7 +52,7 @@ SECRET_KEY = SECRET_KEY
 # SECURITY WARNING: keep the secret key used in production secret!
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = ['bt-production-bacf.up.railway.app', '127.0.0.1','localhost', 'bt-production-7150.up.railway.app']
 CSRF_TRUSTED_ORIGINS = ['https://bt-production-bacf.up.railway.app', 'https://bt-production-7150.up.railway.app']
 TAGGIT_CASE_INSENSITIVE = True
