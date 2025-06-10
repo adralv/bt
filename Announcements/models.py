@@ -10,7 +10,7 @@ class Announcements(models.Model):
     description = models.CharField()
     date = models.DateTimeField()
     location = models.IntegerField()
-    user = models.OneToOneField(User, on_delete=models.CASCADE, default=None)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
     
     
     def __str__(self):

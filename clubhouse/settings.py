@@ -31,14 +31,14 @@ SUPABASE_BUCKET_NAME = "media"
 SUPABASE_STORAGE_URL = f"{SUPABASE_URL}/storage/v1/object/public/{SUPABASE_BUCKET_NAME}"
 
 # Correct MEDIA_URL format
-MEDIA_URL = SUPABASE_STORAGE_URL + '/'
+# MEDIA_URL = SUPABASE_STORAGE_URL + '/'
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# MEDIA_URL = '/media/' 
+MEDIA_URL = '/media/' 
 
-DB_PASSWORD = os.getenv('DB_PASSWORD')
-DB_HOST = os.getenv('DB_HOST')
+DB_PASSWORD = 'AVNS__XMZ6Zk95HjyF9y6DPO'
+DB_HOST = "btclubhouse-btclubhouse.g.aivencloud.com"
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 SECRET_KEY = SECRET_KEY
@@ -52,7 +52,7 @@ SECRET_KEY = SECRET_KEY
 # SECURITY WARNING: keep the secret key used in production secret!
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = ['bt-production-bacf.up.railway.app', '127.0.0.1','localhost', 'bt-production-7150.up.railway.app']
 CSRF_TRUSTED_ORIGINS = ['https://bt-production-bacf.up.railway.app', 'https://bt-production-7150.up.railway.app']
 TAGGIT_CASE_INSENSITIVE = True
@@ -125,7 +125,7 @@ DATABASES = {
         'USER': 'avnadmin',
         'PASSWORD': DB_PASSWORD,
         'HOST': DB_HOST,
-        'PORT': '10161',
+        'PORT': '17884',
     }
 }
 
