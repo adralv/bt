@@ -1,4 +1,4 @@
-https://prod.liveshare.vsengsaas.visualstudio.com/join?5D1388D1CAA3B6BC685A6EB138D2601BD3DB
+https://prod.liveshare.vsengsaas.visualstudio.com/join?ADB2E2F4C17DED2699BE322A7434D6C231D1
 
 https://bt-production-7150.up.railway.app/
 
